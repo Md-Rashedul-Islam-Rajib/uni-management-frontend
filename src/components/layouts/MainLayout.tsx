@@ -1,29 +1,54 @@
-import { Layout, Menu } from "antd";
+import { Layout, Menu, MenuProps } from "antd";
 import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
+  // UploadOutlined,
+  // UserOutlined,
+  // VideoCameraOutlined,
 } from "@ant-design/icons";
 import React from "react";
 
 const { Header, Content, Footer, Sider } = Layout;
 
-const items = [
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  UserOutlined,
-].map((icon, index) => ({
-  key: String(index + 1),
-  icon: React.createElement(icon),
-  label: `nav ${index + 1}`,
-}));
+// const items = [
+//   UserOutlined,
+//   VideoCameraOutlined,
+//   UploadOutlined,
+//   UserOutlined,
+// ].map((icon, index) => ({
+//   key: String(index + 1),
+//   icon: React.createElement(icon),
+//   label: `nav ${index + 1}`,
+// }));
+
+const items: MenuProps["items"] = [
+  {
+    key: "1",
+    label: "Home",
+  },
+  {
+    key: "2",
+    label: "Pop",
+  },
+  {
+    key: "3",
+    label: "User management",
+    children: [
+      {
+        key: "11",
+        label: "user-1",
+      },
+      {
+        key: "12",
+        label: "user-2",
+      },
+    ],
+  },
+];
 
 const MainLayout = () => {
   return (
-    <Layout>
+    <Layout className="h-[100%]" style={{height: '100vh'}}>
       <Sider
-        breakpoint="lg"
+              breakpoint="lg"
         collapsedWidth="0"
         onBreakpoint={(broken) => {
           console.log(broken);
@@ -32,7 +57,9 @@ const MainLayout = () => {
           console.log(collapsed, type);
         }}
       >
-        <div className="demo-logo-vertical" />
+              <div style={{ color: 'white', height: '4 rem', justifyContent:'center',alignItems:'center'}} >
+                  <h1>GU</h1>
+        </div>
         <Menu
           theme="dark"
           mode="inline"
