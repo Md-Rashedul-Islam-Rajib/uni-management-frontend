@@ -1,12 +1,8 @@
 import { ReactNode } from "react";
 import { Route } from "react-router";
+import { TRoute } from "../types/route.types";
 
-type TRoute = {
-  name: string;
-  path?: string;
-  element?: ReactNode;
-  children?: TRoute[];
-};
+
 
 export const generateRoutes = (paths: TRoute[]): ReactNode => {
   return paths.map((item) => {
