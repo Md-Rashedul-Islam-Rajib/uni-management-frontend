@@ -4,7 +4,7 @@ import {
   // UserOutlined,
   // VideoCameraOutlined,
 } from "@ant-design/icons";
-import adminSidebarItems from "../../routes/admin/Admin.menu";
+
 
 
 const { Header, Content, Footer, Sider } = Layout;

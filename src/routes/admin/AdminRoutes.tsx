@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { NavLink, Route } from "react-router";
+import { NavLink } from "react-router";
 import AdminDashboard from "../../pages/admin/AdminDashboard";
 import CreateAdmin from "../../pages/admin/CreateAdmin";
 import CreateFaculty from "../../pages/admin/CreateFaculty";
@@ -11,14 +11,9 @@ type TSidebarItem = {
   children?: TSidebarItem[];
 };
 
-type TRoute = {
-  name: string;
-  path?: string;
-  element: ReactNode;
-  children?: TRoute[];
-}
 
-const adminPaths = [
+
+export const adminPaths = [
   {
     name: "Dashboard",
     path: "dashboard",
@@ -68,17 +63,21 @@ export const adminSidebarItems = adminPaths.reduce((acc: TSidebarItem[], item) =
   return acc;
 }, []);
 
-export const generateRoutes = (paths: TRoute[]): ReactNode => {
-  return paths.map((item) => {
-    if (item.children) {
-      return (
-        <Route key={item.name} path={item.path}>
-          {item.element && <Route index element={item.element} />}
-          {generateRoutes(item.children)}
-        </Route>
-      );
-    }
+// export const generateRoutes = (paths: TRoute[]): ReactNode => {
+//   return paths.map((item) => {
+//     if (item.children) {
+//       return (
+//         <Route key={item?.name} path={item?.path}>
+//           {item?.element && <Route index element={item?.element} />}
+//           {generateRoutes(item.children)}
+//         </Route>
+//       );
+//     }
 
-    return <Route key={item.name} path={item.path} element={item.element} />;
-  });
-};
+//      return (
+//        item?.path && (
+//          <Route key={item.name} path={item.path} element={item.element} />
+//        )
+//      );
+//   });
+// };

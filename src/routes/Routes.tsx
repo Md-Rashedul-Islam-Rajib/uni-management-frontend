@@ -2,8 +2,8 @@ import { Route, Routes } from "react-router";
 import App from "../App";
 import About from "../pages/shared/About";
 import Contact from "../pages/shared/Contact";
-import AdminRoutes from "./admin/AdminRoutes";
-
+import { adminPaths } from "./admin/AdminRoutes";
+import { generateRoutes } from "../utilities/routeGenerator";
 
 const AppRoutes = () => {
   return (
@@ -13,7 +13,7 @@ const AppRoutes = () => {
         <Route path="contact" element={<Contact />} />
       </Route>
       <Route path="/admin" element={<App />}>
-        {AdminRoutes()}
+        {generateRoutes(adminPaths)}
       </Route>
     </Routes>
   );
