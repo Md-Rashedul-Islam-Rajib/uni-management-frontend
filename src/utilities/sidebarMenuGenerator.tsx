@@ -1,18 +1,8 @@
-import { ReactNode } from "react";
+
 import { NavLink } from "react-router";
+import { TRoutePaths, TSidebarItem } from "../types/sidebar.types";
 
-type TSidebarItem = {
-  key: string;
-  label: ReactNode;
-  children?: TSidebarItem[];
-};
 
-type TRoutePaths = {
-  name: string;
-  path?: string;
-  element?: ReactNode;
-  children?: TRoutePaths[];
-};
 
 export const menuGenerator = (path: TRoutePaths[], role: string) => {
   const routes = path.reduce((acc: TSidebarItem[], item) => {
