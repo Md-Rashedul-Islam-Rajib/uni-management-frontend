@@ -1,9 +1,10 @@
-import { Layout, Menu, MenuProps } from "antd";
+import { Layout, Menu} from "antd";
 import {
   // UploadOutlined,
   // UserOutlined,
   // VideoCameraOutlined,
 } from "@ant-design/icons";
+import adminSidebarItems from "../../routes/admin/Admin.menu";
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -19,30 +20,7 @@ const { Header, Content, Footer, Sider } = Layout;
 //   label: `nav ${index + 1}`,
 // }));
 
-const items: MenuProps["items"] = [
-  {
-    key: "1",
-    label: "Home",
-  },
-  {
-    key: "2",
-    label: "Pop",
-  },
-  {
-    key: "3",
-    label: "User management",
-    children: [
-      {
-        key: "11",
-        label: "user-1",
-      },
-      {
-        key: "12",
-        label: "user-2",
-      },
-    ],
-  },
-];
+
 
 const MainLayout = () => {
   return (
@@ -64,7 +42,7 @@ const MainLayout = () => {
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["4"]}
-          items={items}
+          items={adminSidebarItems}
         />
       </Sider>
       <Layout>
