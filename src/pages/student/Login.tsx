@@ -38,7 +38,7 @@ const formItemLayout = {
             label="ID"
             rules={[{ required: true, message: "Please input a valid ID!" }]}
           >
-            <Input placeholder="type your ID here" />
+            <Input autoComplete="id" placeholder="type your ID here" />
           </Form.Item>
 
           <Form.Item
@@ -48,7 +48,7 @@ const formItemLayout = {
               { required: true, message: "Please provides a valid password" },
             ]}
           >
-            <Input.Password placeholder="type your password" />
+            <Input.Password autoComplete="current-password" placeholder="type your password" />
           </Form.Item>
 
           <Form.Item
