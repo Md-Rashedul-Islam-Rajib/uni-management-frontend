@@ -12,6 +12,8 @@ export type PrivateRoute = {
 };
 
 export type User = {
-  id: string;
+  userId: string;
   role: string;
+  iat: number;
+  exp: number
 };

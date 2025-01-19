@@ -3,6 +3,9 @@ import { useLoginMutation } from "../../redux/features/auth/authApi";
 import { tokenDecoder } from "../../utilities/tokenDecoder";
 import { useAppDispatch } from "../../redux/hooks";
 import { signin } from "../../redux/features/auth/authSlice";
+import { toast } from "sonner";
+import { useNavigate } from "react-router";
+import { User } from "../../types/route.types";
 
 type TLoginData = {
   id: string;
@@ -11,6 +14,7 @@ type TLoginData = {
 const Login = () => {
   const dispatch = useAppDispatch();
   const [login, { error }] = useLoginMutation();
+  const navigate = useNavigate();
 
   console.log(error);
   const formItemLayout = {
@@ -26,10 +30,18 @@ const Login = () => {
   const [form] = Form.useForm();
 
   const onSubmit = async (data: TLoginData) => {
-    console.log(data);
-    const res = await login(data).unwrap();
-    const user = tokenDecoder(res?.data?.accessToken);
-    dispatch(signin({ user, token: res.data.accessToken }));
+    const toastId = toast.loading('logging in');
+    try {
+      const res = await login(data).unwrap();
+      const user = tokenDecoder(res?.data?.accessToken) as User;
+      dispatch(signin({ user, token: res.data.accessToken }));
+      toast.success('logged In', { id: toastId, duration: 2000 });
+      navigate(`/${user?.role}/dashboard`)
+    } catch (error) {
+      toast.error('something went wrong', { id: toastId, duration: 2000 })      
+      console.log(error)
+    }
+
   };
 
   return (
