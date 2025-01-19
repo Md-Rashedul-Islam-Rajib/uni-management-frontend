@@ -5,6 +5,7 @@ import Contact from "../pages/shared/Contact";
 import { adminPaths } from "./admin/AdminRoutes";
 import { generateRoutes } from "../utilities/routeGenerator";
 import { studentPaths } from "./student/StudentRoutes";
+import ProtectedRoute from "../pages/shared/ProtectedRoute";
 
 const AppRoutes = () => {
   return (
@@ -13,11 +14,11 @@ const AppRoutes = () => {
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
       </Route>
-      <Route path="/admin" element={<App />}>
+      <Route path="/admin" element={<ProtectedRoute allowedRoles={["admin"]} />}>
         {generateRoutes(adminPaths)}
       </Route>
 
-      <Route path="/student" element={<App />}>
+      <Route path="/student" element={<ProtectedRoute allowedRoles={['student']} />}>
         {generateRoutes(studentPaths)}
       </Route>
     </Routes>
