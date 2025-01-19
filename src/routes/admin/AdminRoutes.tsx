@@ -1,10 +1,8 @@
-
 import AdminDashboard from "../../pages/admin/AdminDashboard";
+import AdminLogin from "../../pages/admin/AdminLogin";
 import CreateAdmin from "../../pages/admin/CreateAdmin";
 import CreateFaculty from "../../pages/admin/CreateFaculty";
 import CreateStudent from "../../pages/admin/CreateStudent";
-import Login from "../../pages/student/Login";
-
 
 
 export const adminPaths = [
@@ -34,9 +32,8 @@ export const adminPaths = [
       {
         name: "Login",
         path: "login",
-        element: <Login />,
+        element: <AdminLogin />,
       },
     ],
   },
 ];
-

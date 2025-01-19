@@ -6,3 +6,12 @@ export type TRoute = {
   element?: ReactNode;
   children?: TRoute[];
 };
+
+export type PrivateRoute = {
+  allowedRoles?: string[];
+};
+
+export type User = {
+  id: string;
+  role: string;
+};
