@@ -8,6 +8,7 @@ import { studentPaths } from "./student/StudentRoutes";
 import ProtectedRoute from "../pages/shared/ProtectedRoute";
 import Login from "../pages/shared/Login";
 import Unauthorized from "../pages/shared/Unauthorized";
+import MainLayout from "../components/layouts/MainLayout";
 
 const AppRoutes = () => {
   return (
@@ -17,13 +18,16 @@ const AppRoutes = () => {
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
         <Route path="unauthorized" element={<Unauthorized />} />
-
       </Route>
-      <Route path="/admin" element={<ProtectedRoute allowedRoles={["admin"]} />}>
+      <Route path="/admin" element={<ProtectedRoute allowedRoles={["admin"]} >
+        <MainLayout/>
+      </ProtectedRoute>}>
         {generateRoutes(adminPaths)}
       </Route>
 
-      <Route path="/student" element={<ProtectedRoute allowedRoles={['student']} />}>
+      <Route path="/student" element={<ProtectedRoute allowedRoles={['student']} >
+        <MainLayout />
+      </ProtectedRoute>}>
         {generateRoutes(studentPaths)}
       </Route>
     </Routes>
