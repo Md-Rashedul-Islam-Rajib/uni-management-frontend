@@ -45,46 +45,13 @@ const Login = () => {
   };
 
   return (
-    <>
-      <Form
-        style={{ maxWidth: 350 }}
-        {...formItemLayout}
-        form={form}
-        onFinish={onSubmit}
-      >
-        <Form.Item
-          name="id"
-          label="ID"
-          rules={[{ required: true, message: "Please input a valid ID!" }]}
-        >
-          <Input autoComplete="id" placeholder="type your ID here" />
-        </Form.Item>
-
-        <Form.Item
-          name="password"
-          label="Password"
-          rules={[
-            { required: true, message: "Please provides a valid password" },
-          ]}
-        >
-          <Input.Password
-            autoComplete="current-password"
-            placeholder="type your password"
-          />
-        </Form.Item>
-
-        <Form.Item
-          wrapperCol={{
-            xs: { span: 24 },
-            sm: { offset: 9, span: 14 },
-          }}
-        >
-          <Button type="primary" htmlType="submit">
-            Login
-          </Button>
-        </Form.Item>
-      </Form>
-    </>
+    <Row justify="center" align="middle" style={{ height: "100vh" }}>
+      <CForm onSubmit={onSubmit} defaultValues={defaultValues}>
+        <PHInput type="text" name="userId" label="ID:" />
+        <PHInput type="text" name="password" label="Password" />
+        <Button htmlType="submit">Login</Button>
+      </CForm>
+    </Row>
   );
 };
 
