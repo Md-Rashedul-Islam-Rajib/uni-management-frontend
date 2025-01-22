@@ -16,3 +16,9 @@ export type TFormProps = {
   onSubmit: SubmitHandler<FieldValues>;
   children: ReactNode;
 } & TFormConfig;
+
+export type TSelectProps = {
+  label: string;
+  name: string;
+  options: { value: string; label: string; disabled?: boolean }[];
+};
