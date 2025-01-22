@@ -1,5 +1,6 @@
 import { FormProvider, useForm } from "react-hook-form";
 import { TFormConfig, TFormProps } from "../../types/form.types";
+import { Form } from "antd";
 
 
 const CustomForm = ({ onSubmit, children,defaultValues }: TFormProps) => {
@@ -13,7 +14,7 @@ const CustomForm = ({ onSubmit, children,defaultValues }: TFormProps) => {
     const methods = useForm();
     return (
     <FormProvider {...methods}>
-            <form onSubmit={methods.handleSubmit(onSubmit)}>{ children}</form>
+            <Form onFinish={methods.handleSubmit(onSubmit)}>{ children}</Form>
     </FormProvider>
   )
 }
