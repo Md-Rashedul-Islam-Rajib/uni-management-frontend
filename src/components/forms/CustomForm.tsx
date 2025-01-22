@@ -2,21 +2,30 @@ import { FormProvider, useForm } from "react-hook-form";
 import { TFormConfig, TFormProps } from "../../types/form.types";
 import { Form } from "antd";
 
+const CustomForm = ({
+  onSubmit,
+  children,
+  defaultValues,
+  resolver,
+}: TFormProps) => {
+  const formConfig: TFormConfig = {};
 
-const CustomForm = ({ onSubmit, children,defaultValues }: TFormProps) => {
-    
-      const formConfig: TFormConfig = {};
+  if (defaultValues) {
+    formConfig["defaultValues"] = defaultValues;
+  }
 
-      if (defaultValues) {
-        formConfig["defaultValues"] = defaultValues;
-      }
+  if (resolver) {
+    formConfig["resolver"] = resolver;
+  }
 
-    const methods = useForm();
-    return (
+  const methods = useForm(formConfig);
+  return (
     <FormProvider {...methods}>
-            <Form onFinish={methods.handleSubmit(onSubmit)}>{ children}</Form>
+      <Form layout="vertical" onFinish={methods.handleSubmit(onSubmit)}>
+        {children}
+      </Form>
     </FormProvider>
-  )
-}
+  );
+};
 
-export default CustomForm
+export default CustomForm;

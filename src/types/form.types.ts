@@ -10,6 +10,8 @@ export type TInputProps = {
 export type TFormConfig = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   defaultValues?: Record<string, any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  resolver?: any;
 };
 
 export type TFormProps = {
