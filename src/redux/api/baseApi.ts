@@ -1,13 +1,13 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
-  BaseQueryApi,
+  BaseQueryFn,
   createApi,
-  DefinitionType,
   FetchArgs,
   fetchBaseQuery,
+  FetchBaseQueryError,
 } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store";
 import { logout, signin } from "../features/auth/authSlice";
+import { toast } from "sonner";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "http://localhost:5000/api/v1",
@@ -22,60 +22,22 @@ const baseQuery = fetchBaseQuery({
   },
 });
 
-// const baseQueryWithRefreshToken: BaseQueryFn<
-//   string | FetchArgs, // Args
-//   unknown, // Result
-//   FetchBaseQueryError
-// > = async (args: string | FetchArgs, api: BaseQueryApi, extraOptions: {}) => {
-//   let result = await baseQuery(args, api, extraOptions);
 
-//   if (result.error && result.error.status === 401) {
-//     // Try refreshing the token here
-//     const refreshResult = await baseQuery(
-//       {
-//         url: "/auth/refresh",
-//         method: "POST",
-//       },
-//       api,
-//       extraOptions
-//     );
 
-//     if (refreshResult.data) {
-//       // Save the new token and retry the original request
-//       const newToken = (refreshResult.data as { token: string }).token;
-//       (api.dispatch as any)(
-//         (
-//           dispatch: (arg0: { type: string; payload: string }) => void,
-//           getState: any
-//         ) => {
-//           // Replace this with your Redux logic for saving the new token
-//           dispatch({
-//             type: "auth/saveToken",
-//             payload: newToken,
-//           });
-//         }
-//       );
-
-//       // Retry the original request with the new token
-//       result = await baseQuery(args, api, extraOptions);
-//     } else {
-//       // Handle token refresh failure
-//       return {
-//         error: { status: 401, data: "Unauthorized" },
-//       } as QueryReturnValue;
-//     }
-//   }
-
-//   return result; // Make sure to return the result here
-// };
-
-const baseQueryWithRefreshToken = async (
-  args: string | FetchArgs,
-  api: BaseQueryApi,
-  extraOptions: DefinitionType
-): Promise<any> => {
+const baseQueryWithRefreshToken: BaseQueryFn<
+  string | FetchArgs,
+  unknown,
+  FetchBaseQueryError
+> = async (
+  args,
+  api,
+  extraOptions
+) => {
   let result = await baseQuery(args, api, extraOptions);
   console.log(result);
+  if (result?.error?.status === 400) { 
+    toast.error('user not found');
+  }
   if (result?.error?.status === 401) {
     console.log("sending refresh token request");
 
@@ -91,7 +53,6 @@ const baseQueryWithRefreshToken = async (
     } else {
       api.dispatch(logout());
     }
-    
   }
   return result;
 };

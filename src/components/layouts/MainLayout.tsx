@@ -1,4 +1,4 @@
-import { Layout} from "antd";
+import { Button, Layout} from "antd";
 import {
   // UploadOutlined,
   // UserOutlined,
@@ -7,6 +7,8 @@ import {
 
 import { Outlet } from "react-router";
 import Sidebar from "./Sidebar";
+import { useAppDispatch } from "../../redux/hooks";
+import { logout } from "../../redux/features/auth/authSlice";
 const { Header, Content, Footer } = Layout;
 
 
@@ -14,11 +16,15 @@ const { Header, Content, Footer } = Layout;
 
 
 const MainLayout = () => {
+
+  const dispatch = useAppDispatch();
   return (
-    <Layout className="h-[100%]" style={{height: '100vh'}}>
+    <Layout style={{height: '100vh'}}>
       <Sidebar />
       <Layout>
-        <Header style={{ padding: 0 }} />
+        <Header style={{ padding: 0, display: 'flex', justifyContent: 'end'}}  >
+          <Button onClick={()=> {dispatch(logout())}} style={{margin: "15px 20px 0 0"}} >LogOut</Button>
+        </Header>
         <Content style={{ margin: "24px 16px 0" }}>
           <div
             style={{
