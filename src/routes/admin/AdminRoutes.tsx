@@ -61,11 +61,6 @@ export const adminPaths = [
         element: <CreateAdmin />,
       },
       {
-        name: "Create Faculty",
-        path: "create-faculty",
-        element: <CreateFaculty />,
-      },
-      {
         name: "Create Student",
         path: "create-student",
         element: <CreateStudent />,
