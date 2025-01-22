@@ -20,7 +20,7 @@ const MainLayout = () => {
   const dispatch = useAppDispatch();
   return (
     <Layout style={{height: '100vh'}}>
-      <Sidebar />
+      <Sidebar  />
       <Layout>
         <Header style={{ padding: 0, display: 'flex', justifyContent: 'end'}}  >
           <Button onClick={()=> {dispatch(logout())}} style={{margin: "15px 20px 0 0"}} >LogOut</Button>
