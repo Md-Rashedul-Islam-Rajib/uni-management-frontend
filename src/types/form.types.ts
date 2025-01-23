@@ -24,3 +24,8 @@ export type TSelectProps = {
   name: string;
   options: { value: string; label: string; disabled?: boolean }[];
 };
+
+export type TDatePickerProps = {
+  name: string;
+  label?: string;
+}
