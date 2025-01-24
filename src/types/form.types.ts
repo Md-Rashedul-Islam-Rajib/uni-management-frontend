@@ -23,6 +23,7 @@ export type TSelectProps = {
   label: string;
   name: string;
   options: { value: string; label: string; disabled?: boolean }[];
+  disabled?: boolean;
 };
 
 export type TDatePickerProps = {
