@@ -9,6 +9,7 @@ import Department from "../../pages/admin/academicManagement/Department";
 import Faculty from "../../pages/admin/academicManagement/Faculty";
 import Semester from "../../pages/admin/academicManagement/Semester";
 import StudentData from "../../pages/admin/userManagement/StudentData";
+import StudentDetails from "../../pages/admin/userManagement/StudentDetails";
 
 
 export const adminPaths = [
@@ -77,7 +78,7 @@ export const adminPaths = [
       },
       {
         path: "student-data/:studentId",
-        // element: <StudentDetails />,
+        element: <StudentDetails />,
       },
     ],
   },
